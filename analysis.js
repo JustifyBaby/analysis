@@ -1,22 +1,24 @@
-const analysis = (datas) => {
-  let sum = 0;
-  let distributed = 0;
+const analysis = datas => {
+  let sum = 0; // 初期値
+  let distributedSum = 0; //初期値
 
-  datas.forEach((e) => {
-    sum += e;
+  datas.forEach( data => {
+    sum += data; // 合計。
   });
-  const avg = sum / datas.length ;
+  const avg = sum / datas.length ; //平均
 
-  datas.forEach((f) => {
-    distributed += (f-avg) **2 ;
+  datas.forEach( data => {
+    distributedSum += (data - avg) **2 ; // (f-avg) => 偏差。
   })
 
-  const standard = Math.sqrt(distributed);
+  const dist = distributedSum / datas.length; //偏差の二乗の平均（分散）
+
+  const standard = Math.sqrt(dist);
 
   return {
     sum: sum , //データの合計値
     average: avg , //データの平均値
-    distributed: distributed , //データの分散
+    distributed: dist , //データの分散
     standard: standard //データの標準偏差
   } ;
 }
